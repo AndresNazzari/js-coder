@@ -52,7 +52,7 @@ function analizaNumero(numero) {
 }
 
 function analizaPalabra(palabra) {
-    if (palabra === "Hola") {
+    if (palabra == "Hola") {
         alert("La palabra ingresada es Hola")
     } else {
         alert("La palabra no coincide con el registro")

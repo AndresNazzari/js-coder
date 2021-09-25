@@ -1,20 +1,40 @@
-/* EJERCICIO DESAFIO CLASE 1
-let nombre = prompt("Ingrese su nombre");
-let apellido = prompt("Ingrese su apellido");
-let edad = parseInt(prompt("Ingrese su edad"));
+/*************************************/
+/***** EJERCICIO DESAFIO CLASE 3 *****/
+/* Ejemplo:
+Pedir número mediante prompt y sumarle otro número en cada repetición, realizando una salida por cada resultado
+Pedir un texto mediante prompt, concatenar un valor en cada repetición, realizando una salida por cada resultado, hasta que se ingresa “ESC”.
+Pedir un número por prompt, repetir la salida del mensaje “Hola” la cantidad de veces ingresada*/
 
+let numeroBase = parseInt(prompt("Ingrese un numero"));
+let numeroRepeticiones = parseInt(prompt("Ingrese cuantas veces quiere sumarle algun valor al numero anterior"));
 
-while (isNaN(edad)) {
-    alert("Debe ingresar un numero");
-    edad = parseInt(prompt("Ingrese su edad"));
+while (isNaN(numeroBase) || isNaN(numeroRepeticiones)) {
+    if (isNaN(numeroBase)) {
+        alert("Debe ingresar un numero para el Numero Base");
+        numeroBase = parseInt(prompt("Ingrese un numero Base"));
+    } else if (isNaN(numeroRepeticiones)) {
+        alert("Debe ingresar un numero para la cantidad de repeticiones");
+        numeroBase = parseInt(prompt("Ingrese un la cantidad de repeticiones"));
+    }
 };
 
-mensaje = `Su nombre es ${nombre} ${apellido} y tiene ${edad} años`;
-alert(mensaje);
-*/
+for (let i = 0; i < numeroRepeticiones; i++) {
+    let numeroSumar = parseInt(prompt("Ingrese un cuanto le quiere sumar al numero"));
+    while (isNaN(numeroSumar)) {
+        alert("Debe ingresar un numero");
+        numeroSumar = parseInt(prompt("Ingrese un cuanto le quiere sumar al numero"));
+    };
+    resultado = numeroBase + numeroSumar
+    iteracionesRestantes = numeroRepeticiones - i - 1
+    alert(`El numero Base ingresado era ${numeroBase}, en esta iteracion se le sumo ${numeroSumar}. Quedan ${iteracionesRestantes} iteraciones.`)
+}
+alert(`El numero Base ingresado era ${numeroBase}, hubo ${iteracionesRestantes} iteraciones. El resultado final fue ${resultado}`)
 
-/* EJERCICIO DESAFIO CLASE 2 */
 
+
+/*************************************/
+/***** EJERCICIO DESAFIO CLASE 2 *****/
+/*
 let respuesta = parseInt(prompt("Si quiere analizar un numero ingrese '1', si quiere analizar una palabra ingrese '2'"));
 
 while (isNaN(respuesta)) {
@@ -58,3 +78,24 @@ function analizaPalabra(palabra) {
         alert("La palabra no coincide con el registro")
     }
 }
+
+/*devolucion: Hola Andres, buen trabajo, te hubieras podido ahorrar codigo poniendo: while (isNaN(respuesta) && respuesta < 1 && respuesta > 2)*/
+
+
+
+/*************************************/
+/***** EJERCICIO DESAFIO CLASE 1******/
+/*
+let nombre = prompt("Ingrese su nombre");
+let apellido = prompt("Ingrese su apellido");
+let edad = parseInt(prompt("Ingrese su edad"));
+
+
+while (isNaN(edad)) {
+    alert("Debe ingresar un numero");
+    edad = parseInt(prompt("Ingrese su edad"));
+};
+
+mensaje = `Su nombre es ${nombre} ${apellido} y tiene ${edad} años`;
+alert(mensaje);
+*/

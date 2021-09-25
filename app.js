@@ -1,10 +1,67 @@
 /*************************************/
+/***** EJERCICIO DESAFIO COMPLEMENTARIO CLASE 4 *****/
+/* Consigna: codifica al menos tres funciones cuyas instrucciones permitan resolver un problema particular, segmentado en tareas.
+La información a procesar debe ser ingresada por el usuario, y el resultado del procesamiento visualizado en una salida.
+>>Aspectos a incluir en el entregable:
+Archivo HTML y archivo JavaScript referenciados, que incluyan la definición y llamada de al menos tres funciones.*/
+const IVA105 = 0.105
+const IVA20 = 0.21
+
+main();
+
+
+function main() {
+    costoIva = pedirValoresIniciales()
+    iva = calcularIva(costoIva)
+    precio = calcularPrecio(costoIva, iva)
+    alert(`El costo del producto ingresado es ${costoIva[0]}, y de acuerdo al tipo de iva indicado, el iva es de ${iva} y el precio final es ${precio}`)
+}
+
+function pedirValoresIniciales() {
+    costo = parseInt(prompt("Ingrese el costo del producto para poder calcular el precio final"))
+    tipoDeIva = parseInt(prompt("Ingrese 1 si el iva es 10,5% o 2 si el iva es 21%"))
+    while (isNaN(costo) || isNaN(tipoDeIva) || tipoDeIva < 1 || tipoDeIva > 2) {
+        if (isNaN(costo)) {
+            alert("Debe ingresar un numero para el costo");
+            costo = parseInt(prompt("Ingrese el costo del producto para poder calcular el precio final"));
+        } else if (isNaN(tipoDeIva) || tipoDeIva < 1 || tipoDeIva > 2) {
+            alert("El valor ongresado para el tipo de iva debe ser 1 o 2.");
+            tipoDeIva = parseInt(prompt("IngreIngrese 1 si el iva es 10,5% o 2 si el iva es 21%"));
+        }
+    };
+    let resp = [costo, tipoDeIva]
+    return resp
+}
+
+function calcularIva(costoIva) {
+    let iva
+    if (costoIva[1] == 1) {
+        iva = costoIva[0] * IVA105
+        return iva
+    } else if (costoIva[1] == 2) {
+        iva = costoIva[0] * IVA20
+        return iva
+    }
+}
+
+function calcularPrecio(costoIva, iva) {
+    let precio = costoIva[0] + iva
+    return precio
+}
+
+
+
+
+
+
+
+/*************************************/
 /***** EJERCICIO DESAFIO CLASE 3 *****/
 /* Ejemplo:
 Pedir número mediante prompt y sumarle otro número en cada repetición, realizando una salida por cada resultado
 Pedir un texto mediante prompt, concatenar un valor en cada repetición, realizando una salida por cada resultado, hasta que se ingresa “ESC”.
 Pedir un número por prompt, repetir la salida del mensaje “Hola” la cantidad de veces ingresada*/
-
+/*
 let numeroBase = parseInt(prompt("Ingrese un numero"));
 let numeroRepeticiones = parseInt(prompt("Ingrese cuantas veces quiere sumarle algun valor al numero anterior"));
 
@@ -30,7 +87,7 @@ for (let i = 0; i < numeroRepeticiones; i++) {
 }
 alert(`El numero Base ingresado era ${numeroBase}, hubo ${iteracionesRestantes} iteraciones. El resultado final fue ${resultado}`)
 
-
+*/
 
 /*************************************/
 /***** EJERCICIO DESAFIO CLASE 2 *****/

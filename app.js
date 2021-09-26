@@ -7,16 +7,6 @@ Archivo HTML y archivo JavaScript referenciados, que incluyan la definición y l
 const IVA105 = 0.105
 const IVA20 = 0.21
 
-main();
-
-
-function main() {
-    costoIva = pedirValoresIniciales()
-    iva = calcularIva(costoIva)
-    precio = calcularPrecio(costoIva, iva)
-    alert(`El costo del producto ingresado es ${costoIva[0]}, y de acuerdo al tipo de iva indicado, el iva es de ${iva} y el precio final es ${precio}`)
-}
-
 function pedirValoresIniciales() {
     costo = parseInt(prompt("Ingrese el costo del producto para poder calcular el precio final"))
     tipoDeIva = parseInt(prompt("Ingrese 1 si el iva es 10,5% o 2 si el iva es 21%"))
@@ -43,13 +33,20 @@ function calcularIva(costoIva) {
         return iva
     }
 }
-
 function calcularPrecio(costoIva, iva) {
     let precio = costoIva[0] + iva
     return precio
 }
+function main() {
+    costoIva = pedirValoresIniciales()
+    iva = calcularIva(costoIva)
+    precio = calcularPrecio(costoIva, iva)
+    alert(`El costo del producto ingresado es ${costoIva[0]}, y de acuerdo al tipo de iva indicado, el iva es de ${iva} y el precio final es ${precio}`)
+}
 
 
+
+main();
 
 
 

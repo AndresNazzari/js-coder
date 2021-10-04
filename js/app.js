@@ -1,9 +1,113 @@
 /*************************************/
+/***** EJERCICIO DESAFIO CLASE 4 y 5 *****/
+
+/**************************************************************
+*        ENTIDAD
+***************************************************************/
+class producto {
+    constructor(nombre, costo, tipoIva, iva, precio) {
+        this.nombre = nombre;
+        this.costo = costo;
+        this.tipoIva = tipoIva;
+        this.iva = iva;
+        this.precio = precio;
+    }
+}
+
+/**************************************************************
+*        VARIABLES Y CONSTANTES
+***************************************************************/
+const IVA105 = 0.105;
+const IVA21 = 0.21;
+let productos = [];
+/*{ nombre: "c", costo: 1000, tipoDeIva: 0.21, iva: 210, precio: 1210 }, { nombre: "z", costo: 100, tipoDeIva: 0.21, iva: 21, precio: 121 }, { nombre: "a", costo: 200, tipoDeIva: 0.21, iva: 42, precio: 242 }*/
+/**************************************************************
+*        FUNCIONES
+***************************************************************/
+function agregarProducto() {
+    console.log("funcion agregarProducto")
+    nombre = prompt("Ingrese el nombre del nuevo producto")
+    costo = parseInt(prompt("Ingrese el costo del producto para poder calcular el precio final"))
+    tipoDeIva = parseInt(prompt("Ingrese 1 si el iva es 10,5% o 2 si el iva es 21%"))
+    while (isNaN(costo) || isNaN(tipoDeIva) || tipoDeIva < 1 || tipoDeIva > 2) {
+        if (isNaN(costo)) {
+            alert("Debe ingresar un numero para el costo");
+            costo = parseInt(prompt("Ingrese el costo del producto para poder calcular el precio final"));
+        } else if (isNaN(tipoDeIva) || tipoDeIva < 1 || tipoDeIva > 2) {
+            alert("El valor ongresado para el tipo de iva debe ser 1 o 2.");
+            tipoDeIva = parseInt(prompt("IngreIngrese 1 si el iva es 10,5% o 2 si el iva es 21%"));
+        }
+    };
+    /*Calcular el IVA*/
+    let iva = costo * (tipoDeIva == 1 ? IVA105 : IVA21).toFixed(2);
+    /*Calcular el precio dependiendo del iva*/
+    let precio = costo + iva;
+    /*Agrega el producto al array*/
+    productos.push(new producto(nombre, costo, tipoDeIva == 1 ? IVA105 : IVA21, iva, precio));
+    console.log(productos);
+}
+
+function ordenadosNombre() {
+    productos.sort((a, b) => {
+        if (a.nombre > b.nombre) {
+            return 1
+        }
+        if (a.nombre < b.nombre) {
+            return -1
+        }
+        return 0
+    })
+    console.log("Productos ordenados por Nombre");
+    console.log(productos)
+}
+
+function ordenadosPrecio() {
+    productos.sort((a, b) => {
+        if (a.precio > b.precio) {
+            return 1
+        }
+        if (a.precio < b.precio) {
+            return -1
+        }
+        return 0
+    })
+    console.log("Productos ordenados por Precio");
+    console.log(productos)
+}
+function calcularTotales() {
+    let precioTotal = 0
+    let costoTotal = 0
+    productos.forEach(obj => {
+        precioTotal = precioTotal + obj.precio;
+    });
+    productos.forEach(obj => {
+        costoTotal = costoTotal + obj.costo;
+    });
+    console.log(`El Costo total de los productos es ${costoTotal}`);
+    console.log(`El Precio total de los productos es ${precioTotal}`);
+}
+
+
+/**************************************************************
+*        LOGICA
+***************************************************************/
+
+function imprimir() {
+    ordenadosNombre();
+    /*ordenadosPrecio();*/
+    calcularTotales();
+}
+
+
+
+
+/*************************************/
 /***** EJERCICIO DESAFIO CLASE 4 *****/
 /* Consigna: codifica al menos tres funciones cuyas instrucciones permitan resolver un problema particular, segmentado en tareas.
 La información a procesar debe ser ingresada por el usuario, y el resultado del procesamiento visualizado en una salida.
 >>Aspectos a incluir en el entregable:
 Archivo HTML y archivo JavaScript referenciados, que incluyan la definición y llamada de al menos tres funciones.*/
+/*
 const IVA105 = 0.105
 const IVA20 = 0.21
 
@@ -49,7 +153,7 @@ function main() {
 main();
 
 
-
+*/
 
 
 /*************************************/

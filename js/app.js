@@ -45,6 +45,27 @@ function agregarProducto() {
     /*Agrega el producto al array*/
     productos.push(new producto(nombre, costo, tipoDeIva == 1 ? IVA105 : IVA21, iva, precio));
     console.log(productos);
+
+    const ultimoAltaContainer = document.querySelector("#ultimoAltaContainer")
+    limpiarUltimoAlta(ultimoAltaContainer);
+
+    const h2 = document.createElement("h2")
+    h2.textContent = `Ultimo porducto ingresado ${nombre}`
+    ultimoAltaContainer.appendChild(h2)
+
+    const pcosto = document.createElement("p")
+    pcosto.textContent = `El costo del produto es $${costo}`
+    ultimoAltaContainer.appendChild(pcosto)
+
+    const pprecio = document.createElement("p")
+    pprecio.textContent = `El precio del produto es $${precio}`
+    ultimoAltaContainer.appendChild(pprecio)
+}
+
+function limpiarUltimoAlta(ultimoAltaContainer) {
+    while (ultimoAltaContainer.firstChild) {
+        ultimoAltaContainer.removeChild(ultimoAltaContainer.firstChild);
+    }
 }
 
 function ordenadosNombre() {
@@ -61,19 +82,6 @@ function ordenadosNombre() {
     console.log(productos)
 }
 
-function ordenadosPrecio() {
-    productos.sort((a, b) => {
-        if (a.precio > b.precio) {
-            return 1
-        }
-        if (a.precio < b.precio) {
-            return -1
-        }
-        return 0
-    })
-    console.log("Productos ordenados por Precio");
-    console.log(productos)
-}
 function calcularTotales() {
     let precioTotal = 0
     let costoTotal = 0
@@ -85,6 +93,9 @@ function calcularTotales() {
     });
     console.log(`El Costo total de los productos es ${costoTotal}`);
     console.log(`El Precio total de los productos es ${precioTotal}`);
+
+
+
 }
 
 
@@ -93,9 +104,12 @@ function calcularTotales() {
 ***************************************************************/
 
 function imprimir() {
-    ordenadosNombre();
-    /*ordenadosPrecio();*/
-    calcularTotales();
+    if (productos.length > 0) {
+        ordenadosNombre();
+        calcularTotales();
+    } else {
+        alert("No hay productos para mostrar");
+    }
 }
 
 

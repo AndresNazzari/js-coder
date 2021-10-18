@@ -19,16 +19,17 @@ class producto {
 ***************************************************************/
 const IVA105 = 0.105;
 const IVA21 = 0.21;
-let productos = [];
+let productos = [{ nombre: "gatito", costo: 1000, tipoDeIva: 0.21, iva: 210, precio: 1210 }, { nombre: "gatito mas lindo", costo: 100, tipoDeIva: 0.21, iva: 21, precio: 121 }, { nombre: "mega gatito", costo: 200, tipoDeIva: 0.21, iva: 42, precio: 242 }];
 /*{ nombre: "c", costo: 1000, tipoDeIva: 0.21, iva: 210, precio: 1210 }, { nombre: "z", costo: 100, tipoDeIva: 0.21, iva: 21, precio: 121 }, { nombre: "a", costo: 200, tipoDeIva: 0.21, iva: 42, precio: 242 }*/
+
 /**************************************************************
 *        FUNCIONES
 ***************************************************************/
 function agregarProducto() {
     console.log("funcion agregarProducto")
-    nombre = prompt("Ingrese el nombre del nuevo producto")
-    costo = parseInt(prompt("Ingrese el costo del producto para poder calcular el precio final"))
-    tipoDeIva = parseInt(prompt("Ingrese 1 si el iva es 10,5% o 2 si el iva es 21%"))
+    let nombre = prompt("Ingrese el nombre del nuevo producto")
+    let costo = parseInt(prompt("Ingrese el costo del producto para poder calcular el precio final"))
+    let tipoDeIva = parseInt(prompt("Ingrese 1 si el iva es 10,5% o 2 si el iva es 21%"))
     while (isNaN(costo) || isNaN(tipoDeIva) || tipoDeIva < 1 || tipoDeIva > 2) {
         if (isNaN(costo)) {
             alert("Debe ingresar un numero para el costo");
@@ -47,7 +48,9 @@ function agregarProducto() {
     console.log(productos);
 
     const ultimoAltaContainer = document.querySelector("#ultimoAltaContainer")
-    limpiarUltimoAlta(ultimoAltaContainer);
+    if (ultimoAltaContainer != null) {
+        limpiarUltimoAlta(ultimoAltaContainer);
+    }
 
     const h2 = document.createElement("h2")
     h2.textContent = `Ultimo porducto ingresado ${nombre}`
@@ -93,24 +96,69 @@ function calcularTotales() {
     });
     console.log(`El Costo total de los productos es ${costoTotal}`);
     console.log(`El Precio total de los productos es ${precioTotal}`);
+}
 
+function imprimir() {
+    if (productos.length > 0) {
+        ordenadosNombre();
+        calcularTotales();
+        const tarjetas = document.querySelector("#tarjetas");
+        tarjetas.setAttribute("class", "d-flex")
+        productos.forEach(item => {
+            const card = document.createElement("div")
+            card.setAttribute("class", "card")
+            card.setAttribute("style", "width: 18rem;")
 
+            const img = document.createElement("img")
+            img.setAttribute("src", "http://placekitten.com/200/200")
+            img.setAttribute("class", "card-img-top")
 
+            const cardBody = document.createElement("div")
+            cardBody.setAttribute("class", "card-body")
+
+            const h5 = document.createElement("h5")
+            h5.setAttribute("class", "card-title")
+            h5.innerHTML = item.nombre
+
+            const pTarjeta = document.createElement("p")
+            pTarjeta.setAttribute("class", "card-text")
+            pTarjeta.innerHTML = `Precio $${item.precio}`
+
+            cardBody.appendChild(h5)
+            cardBody.appendChild(pTarjeta)
+            card.appendChild(img)
+            card.appendChild(cardBody)
+            tarjetas.appendChild(card)
+
+            /*<div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class ="card-body">
+                    <h5 class ="card-title">Card title</h5>
+                    <p class ="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class ="btn btn-primary">Go somewhere</a>
+                </div>
+            </div >*/
+
+        })
+
+    } else {
+        alert("No hay productos para mostrar");
+    }
 }
 
 
 /**************************************************************
 *        LOGICA
 ***************************************************************/
+document.querySelector("#cargarProducto").addEventListener("click", () => {
+    agregarProducto()
+})
 
-function imprimir() {
-    if (productos.length > 0) {
-        ordenadosNombre();
-        calcularTotales();
-    } else {
-        alert("No hay productos para mostrar");
-    }
-}
+document.querySelector("#imprimir").addEventListener("click", () => {
+    imprimir()
+})
+
+
 
 
 
